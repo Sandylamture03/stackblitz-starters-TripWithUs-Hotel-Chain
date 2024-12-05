@@ -234,7 +234,7 @@ app.get('/hotels/sort/pricing', (req, res) => {
     hotelCopy.sort((a, b) => sortByPrice(a, b, false));
   }
 
-  res.json(hotelCopy);
+  res.json({hotels:hotelCopy});
 });
 
 //  Get the hotels sorted based on their Ratings
@@ -268,7 +268,7 @@ function soryHotelByRatng(hotels, rating) {
 app.get('/hotels/sort/rating', (req, res) => {
   let rating = req.query.rating;
   let sortedHotels = soryHotelByRatng(hotels, rating);
-  res.json(sortedHotels);
+  res.json({hotels:sortedHotels});
 });
 
 //  Get the Hotels sorted based on their Reviews
@@ -302,7 +302,7 @@ function sortByReviews(hotels, reviews) {
 app.get('/hotels/sort/reviews', (req, res) => {
   let reviews = req.query.reviews;
   let sortedHotel = sortByReviews(hotels, reviews);
-  res.json(sortedHotel);
+  res.json({hotels:sortedHotel});
 });
 //   Filter the hotels based on the Hotel Amenity
 /*  Write an Express code snippet to filter hotels based on the following hotel amenities:
@@ -345,7 +345,7 @@ app.get('/hotels/filter/amenity', (req, res) => {
   let results = hotels.filter((hotelsObj) =>
     filterByAmenity(hotelsObj, amenity)
   );
-  res.json(results);
+  res.json({hotels: results});
 });
 
 //   Filter the hotels based on the selected Country
@@ -389,7 +389,7 @@ app.get('/hotels/filter/country', (req, res) => {
   let results = hotels.filter((hotelsObj) =>
     filterByCountry(hotelsObj, country)
   );
-  res.json(results);
+  res.json({hotels: results});
 });
 
 //  Filter the hotels based on the selected Category
@@ -430,13 +430,15 @@ app.get('/hotels/filter/category', (req, res) => {
   let results = hotels.filter((hotelsObj) =>
     filterByCategory(hotelsObj, category)
   );
-  res.json(results);
+  res.json({hotels: results});
 });
 
 app.get('/hotels', (req, res) => {
   let results = hotels;
-  res.json(results);
+  res.json({hotels: results});
 });
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
